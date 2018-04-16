@@ -1,0 +1,62 @@
+{
+  "COPYRIGHT": "有限公司<br>&copy; 2017",
+  "HEADNAME": "OMS",
+  "login": {
+    "LOGIN": "登录",
+    "FORGOT_PASSWORD": "忘记密码?",
+    "ENTER_LOGIN_INFO": "请输入登录信息",
+    "ACCOUNT": "账号",
+    "PASSWORD": "密码",
+    "VERIFICATION": "验证码"
+  },
+  "footer":{
+    "homepage":"首页",
+    "vip":"VIP",
+    "team":"小组",
+    "integral":"积分"
+  },
+  "nav": {
+    "HEADER": "导航",
+    "MAIN": "首页"
+  },
+  "app": {
+    "member":{
+      "manage":"会员管理",
+      "info":"用户信息",
+      "vip":"会员信息",
+      "supervip":"出彩会员",
+      "member":"用户信息",
+      "config":"vip奖励配置",
+      "newmember":"创建用户"
+    },
+    "acl": {
+      "manage":"权限管理",
+      "user": "用户管理",
+      "role": "角色管理",
+      "resource": "资源管理"
+    },
+    "config":{
+      "manage": "配置管理",
+      "list": "管理配置信息",
+      "menus": "菜单配置",
+      "systeminit": "系统初始化",
+      "systemconfig": "系统配置",
+      "unified": "统一配置"
+    },
+    "system":{
+      "manage": "系统管理",
+      "admin": "管理员列表",
+      "log": "系统日志"
+    },
+    "shop":{
+      "manage":"商城管理",
+      "product":"产品管理",
+      "order":"订单管理"
+    },
+    "insider":{
+      "manage":"内部人员管理",
+      "list":"内部人员列表"
+    },
+    "promote":"推广地址"
+  }
+}

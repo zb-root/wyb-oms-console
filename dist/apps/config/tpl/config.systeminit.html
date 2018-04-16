@@ -1,0 +1,36 @@
+<!--<div ui-jq="slimScroll" ui-refresh="app.navHeight" ui-options="{height:{{app.navHeight-51}}+'px', size:'8px'}">-->
+    <form name="formValidate" class="form-horizontal form-validation">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <strong translate="app.config.systeminit">系统初始化</strong>
+            </div>
+            <div class="panel-body">
+                <div class="form-group">
+                    <label class="col-sm-2 control-label" translate="config.systeminit.configuration system">配置系统</label>
+                    <div class="col-sm-9 w-auto">
+                        <tags-input class="bootstrap" ng-model="systems" on-tag-added="addTag($tag)" on-tag-removed="removeTag($tag)" add-on-space="true" add-on-paste="true" allowed-tags-pattern="^[a-z|A-Z|0-9]*$" placeholder="系统名(a-z|A-Z|0-9字符)" min-length="1"></tags-input>
+                    </div>
+                    <div class="col-sm-1"></div>
+                </div>
+
+                <div class="form-group" ng-repeat="item in items">
+                    <label class="col-sm-2 control-label">{{item.key}}</label>
+                    <div class="col-sm-9 w-auto">
+                        <label class="i-switch i-switch-md m-t-xs m-r">
+                            <input type="checkbox" ng-model="item.value.isInit" ng-click="update(item)">
+                            <i></i>
+                        </label>
+                    </div>
+                    <div class="col-sm-1"></div>
+                </div>
+
+            </div>
+            <footer class="panel-footer text-right bg-light lter">
+                <div style="max-width: 700px">
+                    <button type="submit" class="btn btn-success" ng-click="init()" translate="config.systeminit.init">执行初始化</button>
+                </div>
+            </footer>
+        </div>
+    </form>
+
+<!--</div>-->

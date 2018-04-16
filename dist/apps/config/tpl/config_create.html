@@ -1,0 +1,62 @@
+<div>
+    <form name="formValidate" class="form-horizontal form-validation">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <strong>配置创建</strong>
+            </div>
+            <div class="panel-body">
+
+                <div class="form-group">
+                    <label class="col-sm-2 control-label"><code style="background-color: transparent">*</code>root</label>
+                    <div class="col-sm-9">
+                        <input type="text" class="form-control w-sm" placeholder="/:root" ng-model="config_create.root" ng-required="true">
+                    </div>
+                    <div class="col-sm-1"></div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label"><code style="background-color: transparent">*</code>key</label>
+
+                    <div class="col-sm-9">
+                        <input type="text" class="form-control w-sm" placeholder="/:key" ng-model="config_create.key" ng-required="true">
+                    </div>
+                    <div class="col-sm-1"></div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label"><code style="background-color: transparent">*</code>value</label>
+                    <div class="col-sm-9">
+                        <input type="text" class="form-control w-sm" placeholder="value" ng-model="config_create.value" ng-required="true">
+                    </div>
+                    <div class="col-sm-1"></div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">过期时间</label>
+                    <div class="col-sm-9">
+                        <input type="number" class="form-control w-sm" placeholder="过期时间"  ng-pattern="/([0-9])$/" ng-model="config_create.expire" >
+                    </div>
+                    <div class="col-sm-1"></div>
+                </div>
+
+
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">Json</label>
+                    <div class="col-sm-9">
+                        <select class="form-control w-sm" ng-model="config_create.ifjson">
+                            <option value="no">否</option>
+                            <option  value="yes" selected>是</option>
+                        </select>
+                    </div>
+                    <div class="col-sm-1"></div>
+                </div>
+
+
+
+            </div>
+            <footer class="panel-footer text-right bg-light lter">
+                <div style="max-width: 750px">
+                    <button type="submit" class="btn btn-success" ng-click="!formValidate.$invalid&&create()" >提交创建</button>
+                </div>
+            </footer>
+        </div>
+    </form>
+
+</div>

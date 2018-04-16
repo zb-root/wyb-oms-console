@@ -1,0 +1,30 @@
+<div class="bg-light lter b-b wrapper">
+    <div class="pull-right">
+        <button ui-sref="app.config.create" type="button" class="btn btn-sm btn-primary btn-addon">
+            <i class="fa fa-plus"></i>创建
+        </button>
+        <button type="button" class="btn btn-sm btn-danger btn-addon" ng-click="delete()">
+            <i class="fa fa-trash-o"></i>删除
+        </button>
+    </div>
+    <div class="pull-right">
+        <div class="input-group m-r-sm">
+            <input type="text" ng-model="search" class="form-control input-sm bg-light no-border rounded padder" placeholder="搜索 配置名/值">
+              <span class="input-group-btn" style="width: auto">
+                <button type="submit" class="btn btn-sm bg-light rounded" ng-click="onPageSizeChanged()"><i class="fa fa-search"></i></button>
+              </span>
+        </div>
+    </div>
+    <div class="pull-right">
+        <select class="m-t-xs m-r-sm" ng-model="pageSize" ng-options="o.val as o.val for o in listRowsOptions" ng-change="onPageSizeChanged()">
+        </select>
+    </div>
+    <h1 class="m-n font-thin h3">配置管理列表</h1>
+</div>
+
+<div class="panel panel-default">
+    <div class="line b-b" style="margin: 0"></div>
+    <div class="panel-body">
+        <div ng-style="{height:app.navHeight-145+'px'}" ag-grid="gridOptions" class="ag-fresh"></div>
+    </div>
+</div>

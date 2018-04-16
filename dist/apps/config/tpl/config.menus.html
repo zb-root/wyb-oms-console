@@ -1,0 +1,11 @@
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <div class="pull-right">
+            <a href class="btn btn-sm btn-info m-t-n-xs" ng-click="save()" translate="config.menus.save">保存</a>
+        </div>
+        <strong translate="config.menus.editInformation">编辑信息</strong>
+    </div>
+    <div class="panel-body bg-white-only">
+        <textarea style="border:1px solid #ccc; width:100%; display:block; resize:none;padding: 6px;" ng-style="{height:app.navHeight-145+'px'}" placeholder="{{ 'config.menus.enter' | translate }}" ng-model="val"></textarea>
+    </div>
+</div>

@@ -1,0 +1,57 @@
+<!-- hbox layout -->
+<div class="hbox hbox-auto-xs hbox-auto-sm bg-light" ng-style="{height:app.navHeight-55+'px'}">
+    <!-- column -->
+    <div class="col w-lg lter b-r">
+        <div class="vbox">
+            <!--<div class="row-row">-->
+                <div class="wrapper-sm b-b">
+                    <div class="pull-right">
+                        <a href class="btn btn-sm btn-info m-t-n-xs" ng-click="addItem(name)" translate="config.systemconfig.add">新增</a>
+                    </div>
+                    <div class="pull-right">
+                        <input type="text" class="no-border no-bg" placeholder="{{ 'config.systemconfig.systemName' | translate }}" ng-model="name">
+                    </div>
+                    <div class="h4" translate="config.systemconfig.system">系统</div>
+                </div>
+                <div class="row-row">
+                    <div class="cell scrollable hover">
+                        <div class="cell-inner">
+                            <div class="list-group no-radius no-border no-bg m-b-none">
+                                <a ng-repeat="item in items" class="list-group-item m-l-none hover-anchor b-a no-select" ng-class="{'focus': $index==selected}" ng-click="selectItem(item,$index)">
+                                    <span ng-click="deleteItem(item)" class="pull-right text-muted hover-action"><i class="fa fa-times"></i></span>
+                                    <span class="block m-l">{{ item }}</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+        </div>
+    </div>
+    <!-- /column -->
+
+    <!-- column -->
+    <div class="col lter b-r">
+        <div class="vbox">
+            <div class="wrapper-sm b-b">
+                <div class="pull-right">
+                    <a href class="btn btn-sm btn-info m-t-n-xs" ng-click="save()" translate="config.systemconfig.save">保存</a>
+                </div>
+                <div class="pull-right" style="margin-right: 10px">
+                    <a href class="btn btn-sm btn-success m-t-n-xs" ng-click="refresh()" translate="config.systemconfig.refresh">刷新配置</a>
+                </div>
+                <div class="h4" translate="config.systemconfig.configure">配置</div>
+            </div>
+            <div class="row-row">
+                <div class="cell">
+                    <div class="cell-inner">
+                        <div class="panel-body bg-white-only" ng-style="{height:app.navHeight-100+'px'}">
+                            <textarea style="border:1px solid #ccc; width:100%; display:block; resize:none;padding: 6px;" ng-style="{height:app.navHeight-123+'px'}" placeholder="{{ 'config.menus.enter' | translate }}" ng-model="val"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /column -->
+
+</div>

@@ -1,0 +1,49 @@
+{
+	"config": {
+		"addsystemconfig": "hạng mục cài đặt hệ thống mở rộng",
+		"edit": "sửa đổi",
+		"menus": {
+			"save": "lưu",
+			"editInformation": "sửa đổi thông tin",
+			"enter": "mời nhập vào số liệu theo thể thức JSON"
+		},
+		"systeminit": {
+			"init": "đang tiến hành ban đầu hóa",
+			"configuration system": "bố trí hệ thống"
+		},
+		"systemconfig": {
+			"add": "thêm mới",
+			"delete": "xóa",
+			"save": "lưu",
+			"refresh": "refresh bố trí",
+			"system": "hệ thống",
+			"configure": "bố trí",
+			"systemName": "nhập tên hệ thống"
+		},
+		"systemunified": {
+			"addk": "hạng mục cài đặt thêm",
+			"addi": "nút cài đặt thêm",
+			"deletek": "xóa bỏ mục cài đặt",
+			"deleteallkey": "xóa bỏ nút cài đặt",
+			"add": "thêm mới",
+			"edit": "edit",
+			"kname": "hạng mục bố trí",
+			"title": "tên",
+			"addkItem": "xác nhận",
+			"addItem": "thêm mới",
+			"deleteAll": "xóa hết",
+			"save": "lưu",
+			"refresh": "refresh bố trí",
+			"item": "hạng mục bố trí",
+			"key": "phím/nút bố trí",
+			"value": "giá trị bố trí",
+			"searchResources": "tìm kiếm tài nguyên",
+			"enter": "nhập phím bố trí"
+		},
+		"view": {
+			"saveall": "lưu chỉnh thể",
+			"refresh": "refresh bố trí",
+			"value": "giá trị bố trí"
+		}
+	}
+}

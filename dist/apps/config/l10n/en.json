@@ -1,0 +1,49 @@
+{
+	"config": {
+		"addsystemconfig": "Add SystemConfig",
+		"edit": "Edit",
+		"menus": {
+			"save": "Save",
+			"editInformation": "Edit Information",
+			"enter": "Please Enter JSON Format Data"
+		},
+		"systeminit": {
+			"init": "Init",
+			"configuration system": "Configuration System"
+		},
+		"systemconfig": {
+			"add": "Add",
+			"delete": "Delete",
+			"save": "Save",
+			"refresh": "Refresh",
+			"system": "System",
+			"configure": "Configure",
+			"systemName": "Enter System Name"
+		},
+		"systemunified": {
+			"addk": "Add Configuration Item",
+			"addi": "Add Key",
+			"deletek": "Delete Configuration Item",
+			"deleteallkey": "Delete All Key",
+			"add": "Add",
+			"edit": "Edit",
+			"kname": "Configuration Item",
+			"title": "Title",
+			"addkItem": "Confirm",
+			"addItem": "Add",
+			"deleteAll": "Delete All",
+			"save": "Save",
+			"refresh": "Refresh",
+			"item": "Item",
+			"key": "Key",
+			"value": "Value",
+			"searchResources": "Search Resources",
+			"enter": "Enter Configuration Key"
+		},
+		"view": {
+			"saveall": "Save All",
+			"refresh": "Refresh",
+			"value": "Value"
+		}
+	}
+}

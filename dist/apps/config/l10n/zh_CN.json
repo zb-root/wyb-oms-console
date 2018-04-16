@@ -1,0 +1,49 @@
+{
+	"config": {
+		"addsystemconfig": "新增系统配置项",
+		"edit": "修改",
+		"menus": {
+			"save": "保存",
+			"editInformation": "编辑信息",
+			"enter": "请输入JSON格式数据"
+		},
+		"systeminit": {
+			"init": "执行初始化",
+			"configuration system": "配置系统"
+		},
+		"systemconfig": {
+			"add": "新增",
+			"delete": "删除",
+			"save": "保存",
+			"refresh": "刷新配置",
+			"system": "系统",
+			"configure": "配置",
+			"systemName": "输入系统名"
+		},
+		"systemunified": {
+			"addk": "新增配置项",
+			"addi": "新增配置键",
+			"deletek": "删除配置项",
+			"deleteallkey": "清空配置键",
+			"add": "新增",
+			"edit": "编辑",
+			"kname": "配置项",
+			"title": "名称",
+			"addkItem": "确认",
+			"addItem": "新增",
+			"deleteAll": "清空",
+			"save": "保存",
+			"refresh": "刷新配置",
+			"item": "配置项",
+			"key": "配置键",
+			"value": "配置值",
+			"searchResources": "搜索资源",
+			"enter": "输入配置键"
+		},
+		"view": {
+			"saveall": "整体保存",
+			"refresh": "刷新配置",
+			"value": "配置值"
+		}
+	}
+}

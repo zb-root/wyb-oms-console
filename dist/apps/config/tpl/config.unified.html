@@ -1,0 +1,118 @@
+<!-- hbox layout -->
+<div class="hbox hbox-auto-xs hbox-auto-sm bg-light" ng-style="{height:app.navHeight-55+'px'}">
+    <!-- column -->
+    <div class="col w-xxl lter b-r">
+        <div class="vbox">
+            <!--<div class="row-row">-->
+            <div class="wrapper-sm b-b">
+                <div class="pull-right">
+                    <a href class="btn btn-sm btn-info m-t-n-xs" ng-init="ebtnname='新增'" ng-click="change(0)" translate="config.systemunified.add">
+                        {{ebtnname}}
+                    </a>
+                    <a href class="btn btn-sm btn-success m-t-n-xs" ng-init="ubtnname='编辑'" ng-click="edit()" translate="config.systemunified.edit">
+                        {{ubtnname}}
+                    </a>
+                    <!--<a href class="btn btn-sm btn-warning m-t-n-xs" ng-click="edit(id)">编辑</a>-->
+                    <!--<a href class="btn btn-sm bg-primary m-t-n-xs" ng-click="searchItem(kname)">查询</a>-->
+                </div>
+                <div class="pull-right input-group">
+                    <span class="input-group-addon input-sm no-border no-bg" style="width: auto"><i class="icon-magnifier text-md m-t-xxs"></i></span>
+                    <input type="text" class="form-control input-sm no-border no-bg text-md" style="width: 110px" placeholder="{{ 'config.systemunified.searchResources' | translate }}" ng-model="query">
+                </div>
+
+                <div class="h4" translate="config.systemunified.item">配置项</div>
+            </div>
+            <div ng-if="!isCollapsed" class="panel-body bg-white-only">
+            <form name="formValidate" class="form-horizontal form-validation">
+                <div class="form-group">
+                    <label class="col-sm-3 control-label" translate="config.systemunified.kname">配置项</label>
+                    <div class="col-sm-9">
+                        <input type="text" class="form-control" placeholder="{{ 'config.systemunified.kname' | translate }}" ng-model="kname">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label" translate="config.systemunified.title">名称</label>
+                    <div class="col-sm-9">
+                        <input type="text" class="form-control" placeholder="{{ 'config.systemunified.title' | translate }}" ng-model="title">
+                    </div>
+                </div>
+                <footer class="text-right">
+                    <button class="btn btn-info" ng-click="!formValidate.$invalid&&addkItem(kname,title)" translate="config.systemunified.addkItem">确认</button>
+                </footer>
+            </form>
+        </div>
+
+            <div class="row-row">
+                <div class="cell scrollable hover">
+                    <div class="cell-inner">
+                        <div class="list-group no-radius no-border no-bg m-b-none">
+                            <a ng-repeat="kitem in kitems | filter:query" class="list-group-item m-l-none hover-anchor b-a no-select" ng-class="{'focus': $index==kselected}" ng-click="selectkItem(kitem,$index)" >
+                                <span ng-click="deletekItem(kitem,$index)" class="pull-right text-muted hover-action"><i class="fa fa-times" ng-if="$index != 0"></i></span>
+                                <span class="block m-l">{{ kitem }}</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /column -->
+    <div class="hbox hbox-auto-xs hbox-auto-sm bg-light" ui-view>
+
+        <div class="col w-xl lter b-r">
+            <div class="vbox">
+                <!--<div class="row-row">-->
+                    <div class="wrapper-sm b-b">
+                        <div class="pull-right">
+                            <a href class="btn btn-sm btn-info m-t-n-xs" ng-click="addItem(name)" translate="config.systemunified.addItem">新增</a>
+                            <a href class="btn btn-sm bg-danger m-t-n-xs" ng-click="deleteAll()" translate="config.systemunified.deleteAll">清空</a>
+                        </div>
+                        <div class="pull-right">
+                            <input type="text" class="no-border no-bg" placeholder="{{ 'config.systemunified.enter' | translate }}" ng-model="name">
+                        </div>
+                        <div class="h4" translate="config.systemunified.key">配置键</div>
+                    </div>
+                <div class="row-row">
+                    <div class="cell scrollable hover">
+                        <div class="cell-inner">
+                            <div class="list-group no-radius no-border no-bg m-b-none">
+                                <a ng-repeat="item in items" class="list-group-item m-l-none hover-anchor b-a no-select" ng-class="{'focus': $index==selected}" ng-click="selectItem(item,$index)">
+                                    <span ng-click="deleteItem(item)" class="pull-right text-muted hover-action"><i class="fa fa-times" ng-if="item != 'root:config:roots'"></i></span>
+                                    <span class="block m-l">{{item}}</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- column -->
+        <div class="col lter b-r">
+            <div class="vbox">
+                <div class="wrapper-sm b-b">
+                    <!--<div class="pull-right">-->
+                        <!--<a href class="btn btn-sm btn-primary m-t-n-xs" ng-click="saveall()">整体保存</a>-->
+                    <!--</div>-->
+                    <div class="pull-right" style="margin-right: 10px">
+                        <a href class="btn btn-sm btn-info m-t-n-xs" ng-click="save()" translate="config.systemunified.save">保存</a>
+                    </div>
+                    <div class="pull-right" style="margin-right: 10px">
+                        <a href class="btn btn-sm btn-success m-t-n-xs" ng-click="refresh()" translate="config.systemunified.refresh">刷新配置</a>
+                    </div>
+                    <div class="h4" translate="config.systemunified.value">配置值</div>
+                </div>
+                <div class="row-row">
+                    <div class="cell">
+                        <div class="cell-inner">
+                            <div class="panel-body bg-white-only" ng-style="{height:app.navHeight-100+'px'}">
+                                <textarea style="border:1px solid #ccc; width:100%; display:block; resize:none;padding: 6px;" ng-style="{height:app.navHeight-123+'px'}" placeholder="{{ 'config.menus.enter' | translate }}" ng-model="configVal.val"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <!-- /column -->
+    </div>
+</div>
