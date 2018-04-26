@@ -4,6 +4,7 @@ app.controller('InsiderListCtrl', ['$scope', '$http', '$state', '$stateParams', 
   var page = 1;
   $scope.pageSize = history.pageSize||$scope.defaultRows;
   $scope.search = {};
+  $scope.insider = {}
   $scope.tablestyle = {};
   if ($scope.isSmartDevice) {
     $scope.tablestyle = {};
@@ -31,16 +32,16 @@ app.controller('InsiderListCtrl', ['$scope', '$http', '$state', '$stateParams', 
     $scope.nodata = false;
     $scope.moreLoading = true;
     var search = $scope.search;
-    if($scope.agentId) $scope.search.agentlevel = null;
-    if($scope.search.agentlevel) $scope.agentId = null;
-    $http.get(companyUri + '/insiderList', {
+    $http.get(insiderUri + '/infos', {
       params: {
         token: token,
         page: page,
         rows: $scope.pageSize || 20,
-        agentId: $scope.agentId,
-        level: $scope.search.agentlevel,
-        search: search.keyword
+        name: search.name,
+        idcard:search.idcard,
+        mobile:search.mobile,
+        department:search.department,
+        state:search.state
       }
     }).success(function (result) {
       if (result.err) {
@@ -69,133 +70,131 @@ app.controller('InsiderListCtrl', ['$scope', '$http', '$state', '$stateParams', 
     });
   }
 
-  // 重置密码
-  $scope.resetpassword = function () {
-    alert(12341)
-  }
-  // 激活和封号
-  $scope.frozen = function () {
+	$scope.getdata()
 
-  }
+  //删除确认框
+	$scope.html = function(row){
+		return '<form name="formValidate" class="form-horizontal form-validation">' +
+			'<div class="form-group ">' +
+			'<label class="col-xs-12 control-label"  style="text-align: center">确定删除该人员吗？</label>' +
+			'</div>' +
+			'</form>';
+	};
+
   //  添加成员
-  $scope.add = function () {
-    if (!$scope.account) {
-      $scope.error('账号不可为空');
-      return false;
-    }
-    if ($scope.account.length >= 12) {
-      $scope.error('帐号长度必须小于12个字符');
-      return false;
-    }
-    // if($scope.account.length)
-    if (!$scope.name || !$scope.area || !$scope.wechat || !$scope.limitMobile) {
-      $scope.error('信息不完整');
-      return false;
-    }
-    if ($scope.level == 0) {
-      if ($scope.curator && $scope.together) {
-        if ($scope.curator + $scope.together >= 100) {
-          $scope.error('比例大于100%');
-          return false;
-        }
-      } else {
-        $scope.error('分成比例不合法');
-        return false;
-      }
-    } else {
-      if ($scope.level == 2) {
-        if (!$scope.teaHouseName) {
-          $scope.error('信息不完整');
-          return false;
-        }
-      }
-      if ($scope.together && $scope.oneLevel) {
-        var oneLevel = parseFloat($scope.oneLevel / 100);
-        if ($scope.together <= oneLevel) {
-          $scope.error('比例不可超出一二级总和');
-          return false;
-        }
-      }
-    }
-
-    var post = {
-      account: $scope.account
-    }
-    if($scope.level == 0) post.mp = $scope.search.mpId
-    $http.post(agentUri + '/agents', post, {
+  $scope.addMember = function () {
+    var data = $scope.insider || {}
+	  if(!data.name || !data.idcard || !data.mobile || !data.department || !data.state ) return $scope.error('请完善信息')
+    // data.token = token
+    $http.post(insiderUri + '/infos', data,{
       params: {
-        token: token
+        token:token
       }
     }).success(function (result) {
+      console.log(result)
       var obj = result;
       if (obj.err) {
         $scope.error(obj.msg);
       } else {
         $('#addMember').modal('hide');
         $scope.success("添加成功");
+	      $scope.insider = {}
         $scope.getdata();
       }
     }).error(function (msg, code) {
+	    console.log(msg,code)
       $scope.errorTips(code);
     });
   }
+
+  $scope.updateMember = function () {
+    var data = {
+      name:$scope.name,
+      department:$scope.department,
+      state:$scope.state,
+      memo:$scope.memo
+    }
+
+    if(!data.name || !data.department || !data.state ) return $scope.error('请完善信息')
+    if(!$scope.insiderId) return $scope.error('程序错误')
+	  $http.post(insiderUri + '/infos/'+$scope.insiderId,data, {
+		  params: {
+			  token: token
+		  }
+	  }).success(function (result) {
+		  var obj = result;
+		  if (obj.err) {
+			  $scope.error(obj.msg);
+		  } else {
+			  $('#updateMember').modal('hide');
+			  $scope.success("修改成功");
+			  $scope.getdata();
+		  }
+	  }).error(function (msg, code) {
+		  $scope.errorTips(code);
+	  });
+  }
+
+	$scope.deleteMember = function (row) {
+
+		$scope.openTips({
+			title:"提示",
+			content: $scope.html(row),
+			okTitle:"确定",
+			okCallback:function(){
+				row = row || {}
+				if(!row._id) return false;
+				$http.delete(insiderUri + '/infos/'+row._id, {
+					params: {
+						token: token
+					}
+				}).success(function (result) {
+					var obj = result;
+					if (obj.err) {
+						$scope.error(obj.msg);
+					} else {
+						$scope.success("删除成功");
+						$scope.getdata();
+					}
+				}).error(function (msg, code) {
+					$scope.errorTips(code);
+				});
+			}
+		});
+
+	}
   // 关闭弹窗
   $scope.cancel = function () {
+    $scope.insider = {}
     $('.modal').modal('hide');
   }
 
-	$scope.addMember = function (row) {
+	$scope.open = function (row) {
     if(row){
+      console.log(row.state)
       $scope.name = row.name || ''
+      $scope.idcard = row.idcard || ''
+      $scope.mobile = row.mobile || ''
+      $scope.department = row.department || ''
+      $scope.state = ""+row.state || "1"
+      $scope.memo = row.memo || ''
+      $scope.insiderId = row._id
+	    $('#updateMember').modal('show');
+    }else{
+      $scope.insider.state = "1"
+	    $('#addMember').modal('show');
     }
-		$('#addMember').modal('show');
 	}
 
-  // 激活和封
-  //查看成员信息
-  $scope.html = function (row) {
-    return '<form name="formValidate" class="form-horizontal form-validation">' +
-      '<div class="form-group ">' +
-      '<label class="col-xs-12 control-label"  style="text-align: center">确定 <span style="color: red">' + (row.user.active == true ? '冻结' : '激活') + ' </span>【' + row.user.account + '】用户吗？</label>' +
-      '</div>' +
-      '</form>';
-  };
+  // //查看成员信息
+  // $scope.html = function (row) {
+  //   return '<form name="formValidate" class="form-horizontal form-validation">' +
+  //     '<div class="form-group ">' +
+  //     '<label class="col-xs-12 control-label"  style="text-align: center">确定 <span style="color: red">' + (row.user.active == true ? '冻结' : '激活') + ' </span>【' + row.user.account + '】用户吗？</label>' +
+  //     '</div>' +
+  //     '</form>';
+  // };
 
-  // 激活冻结日志
-  $scope.changeActiveLog = function (row) {
-    var operator = row.user.active == true ? '冻结' : '激活'
-    var post = {
-      content: operator + '->【' + row.user.account + '】账号'
-    }
-    $scope.insertLog(post)
-  }
-
-  // 重置密码日志
-  $scope.savePwdLog = function () {
-    var operator = '重置'
-    var post = {
-      content: operator + '->【' + $scope.account + '】账号的密码'
-    }
-    $scope.insertLog(post)
-  }
-  //修改分成比例日志
-  $scope.saveRatioLog = function () {
-    var operator = '修改分成比例'
-    console.log($scope)
-    var post = {
-      content: operator + '->【' + $scope.account + '】form【' + $scope.oldRatio + '】to【' + $scope.Ratio + '】'
-    }
-    $scope.insertLog(post)
-  }
-  //添加成员
-  $scope.saveLog = function () {
-    var operator = '新增成员'
-    console.log($scope)
-    var post = {
-      content: operator + '->账号【' + $scope.account + '】姓名【' + $scope.name + '】'
-    }
-    $scope.insertLog(post)
-  }
 
   // 执行日志写入
   $scope.insertLog = function (post) {

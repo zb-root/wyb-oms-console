@@ -55,6 +55,7 @@ var omsUri = apiHost + "/oms";
 var configUri = apiHost + "/config";
 var logUri = apiHost + '/log'
 var companyUri = apiHost + '/company'
+var insiderUri = apiHost + '/insider'
 
 jm.sdk.init({uri: apiHost});
 
