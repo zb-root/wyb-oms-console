@@ -6,6 +6,18 @@ app.controller('InsiderListCtrl', ['$scope', '$http', '$state', '$stateParams', 
   $scope.search = {};
   $scope.insider = {}
   $scope.tablestyle = {};
+
+  $scope.departmentList = [
+  	'北京市公安部', '天津市公安部','河北省公安部','山西省公安部',
+	  '内蒙古自治区公安部', '辽宁省公安部','吉林省公安部','黑龙江省公安部',
+	  '上海市公安部', '江苏省公安部','浙江省公安部','安徽省公安部',
+	  '福建省公安部', '江西省公安部','山东省公安部','河南省公安部',
+	  '湖北省公安部', '湖南省公安部','广东省公安部','广西壮族自治区公安部',
+	  '海南省公安部', '重庆市公安部','四川省公安部','贵州省公安部',
+	  '云南省公安部', '西藏自治区公安部','陕西省公安部','甘肃省公安部',
+	  '青海省公安部', '宁夏回族自治区公安部','新疆维吾尔自治区公安部'
+  ]
+
   if ($scope.isSmartDevice) {
     $scope.tablestyle = {};
   } else {
@@ -32,17 +44,17 @@ app.controller('InsiderListCtrl', ['$scope', '$http', '$state', '$stateParams', 
     $scope.nodata = false;
     $scope.moreLoading = true;
     var search = $scope.search;
+    var conditions = {}
+    search.name && (conditions.name = search.name)
+	  search.idcard && (conditions.idcard = search.idcard)
+	  search.mobile && (conditions.mobile = search.mobile)
+	  search.department && (conditions.department = search.department)
+	  search.state && (conditions.state = search.state)
+	  conditions.token = token
+	  conditions.page = page
+	  conditions.rows = $scope.pageSize || 20
     $http.get(insiderUri + '/infos', {
-      params: {
-        token: token,
-        page: page,
-        rows: $scope.pageSize || 20,
-        name: search.name,
-        idcard:search.idcard,
-        mobile:search.mobile,
-        department:search.department,
-        state:search.state
-      }
+      params: conditions
     }).success(function (result) {
       if (result.err) {
         $scope.error(result.msg);

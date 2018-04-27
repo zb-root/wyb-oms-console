@@ -22,8 +22,7 @@
     <div class="pull-left m-r-sm headpadd m-l-sm">
         <select class="input-sm form-control" ng-model="search.department" ng-change="getdata()">
             <option value="" >部门</option>
-            <option value="广东省公安部">广东省公安部</option>
-            <option value="湖南省公安部">湖南省公安部</option>
+            <option ng-value="depart" ng-repeat="depart in departmentList">{{depart}}</option>
         </select>
     </div>
     <div class="pull-left m-r-sm headpadd m-l-sm">
@@ -96,21 +95,6 @@
                         <button class="btn btn-xs btn-danger" ng-click="deleteMember(row)">删除</button>
                     </td>
                 </tr>
-
-                <!--<tr class="active" ng-dblclick="edit(row._id)">-->
-                    <!--<td>王晓理</td>-->
-                    <!--<td>1234567894564</td>-->
-                    <!--<td>12348916446</td>-->
-                    <!--<td>广东省公安部</td>-->
-                    <!--&lt;!&ndash;<td ng-if="level==1"><button class="btn btn-info btn-sm" ng-click="updateRatio(row)">{{row.ratio}}</button></td>&ndash;&gt;-->
-                    <!--<td>正常</td>-->
-                    <!--<td>。。。</td>-->
-                    <!--<td>{{'2018-4-10' | date:'yyyy-MM-dd HH:mm:ss'}}</td>-->
-                    <!--<td class="text-center" >-->
-                        <!--<button class="btn btn-xs btn-primary" ng-click="addMember()">编辑</button>-->
-                        <!--<button class="btn btn-xs btn-danger" ng-click="delete()">删除</button>-->
-                    <!--</td>-->
-                <!--</tr>-->
             </table>
         </div>
         <!--【表身】-->
@@ -238,7 +222,11 @@
                     <div class="form-group">
                         <label class="col-xs-3 control-label">所属部门</label>
                         <div class="col-xs-9">
-                            <input type="text" class="form-control" ng-model="insider.department" placeholder="所属部门">
+                            <!--<input type="text" class="form-control" ng-model="insider.department" placeholder="所属部门">-->
+                            <select class="input-sm form-control" ng-model="insider.department">
+                                <option value="" >部门</option>
+                                <option ng-value="depart" ng-repeat="depart in departmentList">{{depart}}</option>
+                            </select>
                         </div>
                     </div>
                     <div class="form-group">
@@ -301,7 +289,11 @@
                     <div class="form-group">
                         <label class="col-xs-3 control-label">所属部门</label>
                         <div class="col-xs-9">
-                            <input type="text" class="form-control" ng-model="department" placeholder="所属部门">
+                            <!--<input type="text" class="form-control" ng-model="department" placeholder="所属部门">-->
+                            <select class="input-sm form-control" ng-model="department">
+                                <option value="" >部门</option>
+                                <option ng-value="depart" ng-repeat="depart in departmentList">{{depart}}</option>
+                            </select>
                         </div>
                     </div>
                     <div class="form-group">
