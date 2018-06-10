@@ -91,7 +91,7 @@ app.controller('DashboardCtrl', ['$scope', '$translate', '$translatePartialLoade
     //         }
     //     })
     // }
-    $scope.getAppInfo()
+    // $scope.getAppInfo()
     // global.getLocalUser().then(function(user){
     //     $http.get(agentUri + '/agents/'+user.id, {
     //         params: {

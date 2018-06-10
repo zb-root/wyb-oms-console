@@ -19,10 +19,10 @@ var gConfig = {
         staticHost:"http://api.wyb.jamma.cn"
     },
     production: {
-        apiHost: "http://server.wawa.gzleidi.cn",
-        sdkHost: "http://server.wawa.gzleidi.cn",
-        opensdkHost: "http://server.wawa.gzleidi.cn",
-        staticHost:"http://server.wawa.gzleidi.cn"
+        apiHost: "http://api.wyb.yilisafe.com",
+        sdkHost: "http://api.wyb.yilisafe.com",
+        opensdkHost: "http://api.wyb.yilisafe.com",
+        staticHost:"http://www.wyb.yilisafe.com"
     }
 };
 
